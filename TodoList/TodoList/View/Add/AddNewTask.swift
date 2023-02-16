@@ -42,7 +42,7 @@ struct AddNewTask: View {
                             .datePickerStyle(.graphical)
                             .labelsHidden()
                     } header: {
-                        Text(" Todo List 날짜 추가")
+                        Text("Todo List 날짜 추가")
                     }
                 }
             }
