@@ -56,7 +56,7 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
                                     taskModel.addNewTask.toggle()
                                 } label: {
                                     Text("할일 추가 하러 가기 🥳")
-                                        .font(.headline)
+                                        .font(.custom("나눔손글씨 둥근인연", size: 20))
                                         .foregroundColor(.white)
                                         .frame(width: geometry.size.width / 2 , height: geometry.size.width / 8)
                                         .frame(maxWidth: .infinity)

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,8 @@
 		7F436C4E28A2C1F8008155CD /* AddNewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436C4D28A2C1F8008155CD /* AddNewTask.swift */; };
 		7F436C5028A3DB31008155CD /* TodoLIstMainHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436C4F28A3DB30008155CD /* TodoLIstMainHomeView.swift */; };
 		7F436C5228A3E097008155CD /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436C5128A3E097008155CD /* PersistenceController.swift */; };
+		7F573DC8299E7D4900A5652A /* LanchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F573DC7299E7D4900A5652A /* LanchView.swift */; };
 		7F6175FC289E964F008B81DC /* 나눔손글씨 둥근인연.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FC80E0C289E903000AE2CC8 /* 나눔손글씨 둥근인연.ttf */; };
-		7F617600289E9FE6008B81DC /* MainLanchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6175FF289E9FE6008B81DC /* MainLanchScreen.storyboard */; };
 		7F88D8BE289E6CD0005981DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F88D8BD289E6CD0005981DA /* Color.swift */; };
 		7FA9E1A428A1278000A7FC2C /* TaskManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9E1A328A1278000A7FC2C /* TaskManagerView.swift */; };
 		7FA9E1A628A127BC00A7FC2C /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9E1A528A127BC00A7FC2C /* TaskModel.swift */; };
@@ -36,7 +36,7 @@
 		7F436C4D28A2C1F8008155CD /* AddNewTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTask.swift; sourceTree = "<group>"; };
 		7F436C4F28A3DB30008155CD /* TodoLIstMainHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoLIstMainHomeView.swift; sourceTree = "<group>"; };
 		7F436C5128A3E097008155CD /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		7F6175FF289E9FE6008B81DC /* MainLanchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainLanchScreen.storyboard; sourceTree = "<group>"; };
+		7F573DC7299E7D4900A5652A /* LanchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanchView.swift; sourceTree = "<group>"; };
 		7F88D8BD289E6CD0005981DA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7FA9E1A328A1278000A7FC2C /* TaskManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerView.swift; sourceTree = "<group>"; };
 		7FA9E1A528A127BC00A7FC2C /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		7F6175FE289E9F51008B81DC /* LanchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7F6175FF289E9FE6008B81DC /* MainLanchScreen.storyboard */,
+				7F573DC7299E7D4900A5652A /* LanchView.swift */,
 			);
 			path = LanchScreen;
 			sourceTree = "<group>";
@@ -280,12 +280,13 @@
 				};
 			};
 			buildConfigurationList = 7FEF2F81289ACACC00892CC4 /* Build configuration list for PBXProject "TodoList" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				ko,
+				Base,
 			);
 			mainGroup = 7FEF2F7D289ACACC00892CC4;
 			productRefGroup = 7FEF2F87289ACACD00892CC4 /* Products */;
@@ -304,7 +305,6 @@
 			files = (
 				7FDFCC4D28C77AED00C0728C /* 나눔손글씨 맛있는체.ttf in Resources */,
 				7FEF2FAB289AD90E00892CC4 /* .swiftlint.yml  in Resources */,
-				7F617600289E9FE6008B81DC /* MainLanchScreen.storyboard in Resources */,
 				7F6175FC289E964F008B81DC /* 나눔손글씨 둥근인연.ttf in Resources */,
 				7FEF2F91289ACACF00892CC4 /* Preview Assets.xcassets in Resources */,
 				7FEF2F8E289ACACF00892CC4 /* Assets.xcassets in Resources */,
@@ -365,6 +365,7 @@
 				7FA9E1AB28A137E400A7FC2C /* View.swift in Sources */,
 				7F26F73C28A28B48006EB57E /* TodoLIstTaskDataModel.xcdatamodeld in Sources */,
 				7F436C4E28A2C1F8008155CD /* AddNewTask.swift in Sources */,
+				7F573DC8299E7D4900A5652A /* LanchView.swift in Sources */,
 				7FA9E1A828A1289C00A7FC2C /* TaskViewModel.swift in Sources */,
 				7FEF2F8A289ACACD00892CC4 /* TodoListApp.swift in Sources */,
 				7F436C5228A3E097008155CD /* PersistenceController.swift in Sources */,
@@ -430,11 +431,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -485,10 +487,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -504,7 +507,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Preview Content\"";
 				DEVELOPMENT_TEAM = N94CS4N6VR;
 				ENABLE_PREVIEWS = YES;
@@ -513,17 +516,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "한다";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = MainLanchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = MainLanchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = Roy.com.Handa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -545,7 +548,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Preview Content\"";
 				DEVELOPMENT_TEAM = N94CS4N6VR;
 				ENABLE_PREVIEWS = YES;
@@ -554,17 +557,17 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "한다";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = MainLanchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = MainLanchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = Roy.com.Handa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

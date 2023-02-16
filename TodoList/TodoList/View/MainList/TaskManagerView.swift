@@ -252,6 +252,7 @@ struct TaskManagerView: View {
         .padding(.top,getSafeArea().top)
     }
 }
+
 struct TaskManagerView_Previews: PreviewProvider {
     static var previews: some View {
             TaskManagerView()

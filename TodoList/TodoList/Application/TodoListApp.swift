@@ -11,11 +11,22 @@ import CoreData
 @main
 struct TodoListApp: App {
     let persistenceController = PersistenceController.shared
+    @State private var showLanchView: Bool = true
     
     var body: some Scene {
         WindowGroup {
-            TodoLIstMainHomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ZStack{
+                TodoLIstMainHomeView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                
+                ZStack{
+                    if showLanchView {
+                        LanchView(showLanchView: $showLanchView)
+                            .transition(.move(edge: .leading))
+                    } 
+                }
+                .zIndex(1.0)
+            }
         }
     }
 }
