@@ -25,7 +25,7 @@ struct AddNewTask: View {
                 Section {
                     TextField("Go to work", text: $taskTitle)
                 } header: {
-                    Text(" Todo List 제목 🗓")
+                    Text("Todo List 제목 🗓")
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
 
@@ -47,6 +47,7 @@ struct AddNewTask: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .font(.custom("나눔손글씨 둥근인연", size: 15))
             .navigationTitle("할일 추가 하기")
             .navigationBarTitleDisplayMode(.inline)
             // MARK: Disbaling Dismiss on Swipe
