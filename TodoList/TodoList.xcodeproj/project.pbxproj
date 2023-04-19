@@ -85,6 +85,35 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7F1F292C29F0204600B5169D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7F88D8BC289E6CB6005981DA /* Utills */,
+				7FEF2F9B289ACB2300892CC4 /* Application */,
+				7FEF2F97289ACAFB00892CC4 /* Model */,
+				7FEF2F9A289ACB1100892CC4 /* ViewModel */,
+				7F1F292D29F0208E00B5169D /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7F1F292D29F0208E00B5169D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7FEF2F98289ACB0200892CC4 /* View */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7F1F292E29F020AA00B5169D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7FEF2F8F289ACACF00892CC4 /* Preview Content */,
+				7FEF2F8D289ACACF00892CC4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7F26F73928A28AF6006EB57E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,14 +189,9 @@
 		7FEF2F88289ACACD00892CC4 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				7F1F292E29F020AA00B5169D /* Resources */,
+				7F1F292C29F0204600B5169D /* Sources */,
 				7FEF2FB0289C100F00892CC4 /* Info.plist */,
-				7FEF2F9B289ACB2300892CC4 /* Application */,
-				7FEF2F97289ACAFB00892CC4 /* Model */,
-				7FEF2F9A289ACB1100892CC4 /* ViewModel */,
-				7FEF2F98289ACB0200892CC4 /* View */,
-				7F88D8BC289E6CB6005981DA /* Utills */,
-				7FEF2F8D289ACACF00892CC4 /* Assets.xcassets */,
-				7FEF2F8F289ACACF00892CC4 /* Preview Content */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -258,6 +282,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7F1F293129F0214800B5169D /* PBXTargetDependency */,
 			);
 			name = TodoList;
 			productName = TodoList;
@@ -288,6 +313,9 @@
 				ko,
 			);
 			mainGroup = 7FEF2F7D289ACACC00892CC4;
+			packageReferences = (
+				7F1F292F29F0213700B5169D /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */,
+			);
 			productRefGroup = 7FEF2F87289ACACD00892CC4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -377,6 +405,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F1F293129F0214800B5169D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 7F1F293029F0214800B5169D /* SwiftLint */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7FEF2F92289ACACF00892CC4 /* Debug */ = {
@@ -505,7 +540,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = N94CS4N6VR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -545,7 +580,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TodoList/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = N94CS4N6VR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -597,6 +632,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7F1F292F29F0213700B5169D /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/SwiftLintPlugin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F1F293029F0214800B5169D /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F1F292F29F0213700B5169D /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
+			productName = "plugin:SwiftLint";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		7F26F73A28A28B48006EB57E /* TodoLIstTaskDataModel.xcdatamodeld */ = {
