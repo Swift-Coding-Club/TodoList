@@ -100,5 +100,6 @@ struct AddNewTask: View {
 struct AddTask_Previews: PreviewProvider {
     static var previews: some View {
         AddNewTask()
+            .environmentObject(TaskViewModel())
     }
 }

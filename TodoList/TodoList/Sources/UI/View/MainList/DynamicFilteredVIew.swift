@@ -33,6 +33,11 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
     }
     
     var body: some View {
+        todoEmptyView()
+    }
+    
+    @ViewBuilder
+    private func todoEmptyView() -> some View {
         Group {
             if request.isEmpty {
                 GeometryReader { geometry in
@@ -86,8 +91,6 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
                     .onAppear(perform: addAnimation)
                 }
                 .frame( maxWidth: .infinity, maxHeight: .infinity)
-                
-                
             } else {
                 ForEach(request, id: \.objectID) { object in
                     self.content(object)
@@ -96,6 +99,9 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
             
         }
     }
+    
+    
+    //MARK: - 버튼 애니 메이션
     func addAnimation() {
         guard !animate else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -109,3 +115,10 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
     }
 }
 
+
+struct DynamicFilteredView_preview: PreviewProvider {
+    static var previews: some View {
+        @StateObject var taskModel: TaskViewModel = TaskViewModel()
+        DynamicFilteredView(dateToFilter: taskModel.currentDate, content: { (object: Task) in  })
+    }
+}

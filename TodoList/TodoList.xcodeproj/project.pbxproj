@@ -25,7 +25,7 @@
 		7FEF2F8A289ACACD00892CC4 /* TodoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF2F89289ACACD00892CC4 /* TodoListApp.swift */; };
 		7FEF2F8E289ACACF00892CC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FEF2F8D289ACACF00892CC4 /* Assets.xcassets */; };
 		7FEF2F91289ACACF00892CC4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FEF2F90289ACACF00892CC4 /* Preview Assets.xcassets */; };
-		7FEF2FAB289AD90E00892CC4 /* .swiftlint.yml  in Resources */ = {isa = PBXBuildFile; fileRef = 7FEF2FAA289AD90E00892CC4 /* .swiftlint.yml  */; };
+		7FF0D61E29FB680100781135 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7FF0D61D29FB680100781135 /* .swiftlint.yml */; };
 		8627A06D28A47E4B0076CADB /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627A06C28A47E4B0076CADB /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +49,8 @@
 		7FEF2F89289ACACD00892CC4 /* TodoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListApp.swift; sourceTree = "<group>"; };
 		7FEF2F8D289ACACF00892CC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FEF2F90289ACACF00892CC4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7FEF2FAA289AD90E00892CC4 /* .swiftlint.yml  */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swiftlint.yml "; sourceTree = "<group>"; };
 		7FEF2FB0289C100F00892CC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7FF0D61D29FB680100781135 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		8627A06C28A47E4B0076CADB /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		A79132E7739BB80B311938E4 /* Pods_TodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B1F09BCE55F17F3DAF279E /* Pods-TodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.debug.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		7FEF2F7D289ACACC00892CC4 = {
 			isa = PBXGroup;
 			children = (
-				7FEF2FAA289AD90E00892CC4 /* .swiftlint.yml  */,
+				7FF0D61D29FB680100781135 /* .swiftlint.yml */,
 				7FEF2F88289ACACD00892CC4 /* TodoList */,
 				7FEF2F87289ACACD00892CC4 /* Products */,
 				3B9A02D27D410F39A1289B00 /* Pods */,
@@ -329,8 +329,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FF0D61E29FB680100781135 /* .swiftlint.yml in Resources */,
 				7FDFCC4D28C77AED00C0728C /* 나눔손글씨 맛있는체.ttf in Resources */,
-				7FEF2FAB289AD90E00892CC4 /* .swiftlint.yml  in Resources */,
 				7F6175FC289E964F008B81DC /* 나눔손글씨 둥근인연.ttf in Resources */,
 				7FEF2F91289ACACF00892CC4 /* Preview Assets.xcassets in Resources */,
 				7FEF2F8E289ACACF00892CC4 /* Assets.xcassets in Resources */,
