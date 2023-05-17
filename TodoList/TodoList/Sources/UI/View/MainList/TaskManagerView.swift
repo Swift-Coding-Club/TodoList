@@ -15,10 +15,15 @@ struct TaskManagerView: View {
     @Environment(\.managedObjectContext) var context
     // MARK: Edit Button Context
     @Environment(\.editMode) var editButton
+    // MARK: Font Select
+    @EnvironmentObject var fontSettings: FontSettings
     
     var body: some View {
-        VStack {
-            calenderView()
+        NavigationView {
+            VStack {
+                calenderView()
+            }
+            
         }
     }
     
@@ -34,7 +39,7 @@ struct TaskManagerView: View {
                             
                             HStack(spacing: 10){
                                 
-                                ForEach(taskModel.currentWeek,id: \.self){day in
+                                ForEach(taskModel.currentWeek, id: \.self){day in
                                     
                                     VStack(spacing: 10){
                                         Text(taskModel.extractDate(date: day, format: "dd"))
@@ -54,9 +59,9 @@ struct TaskManagerView: View {
                                     .foregroundStyle(taskModel.isToday(date: day) ? .primary : .secondary)
                                     .foregroundColor(taskModel.isToday(date: day) ? .white : ColorAsset.dateColor)
                                     // MARK: Capsule Shape
-                                    .frame(width: (gemotry.size.width / 9) , height: (gemotry.size.height / 9))
+                                    .frame(width: (gemotry.size.width / 9), height: (gemotry.size.height / 9))
                                     .background(
-                                    
+                                        
                                         ZStack{
                                             // MARK: Matched Geometry Effect
                                             if taskModel.isToday(date: day){
@@ -88,14 +93,14 @@ struct TaskManagerView: View {
         .ignoresSafeArea(.container, edges: .top)
         // MARK: Add Button
         .overlay(
-        
+            
             Button(action: {
                 taskModel.addNewTask.toggle()
             }, label: {
                 Image(systemName: "plus")
                     .foregroundColor(.white)
                     .padding()
-                    .background(ColorAsset.mainViewColor,in: Circle())
+                    .background(ColorAsset.mainViewColor, in: Circle())
             })
             .padding()
             
@@ -123,9 +128,9 @@ struct TaskManagerView: View {
     }
     // MARK: Task Card View
     @ViewBuilder
-    func taskCardView(task: Task)->some View{
+    func taskCardView(task: Task) -> some View{
         // MARK: Since CoreData Values will Give Optinal data
-        HStack(alignment: editButton?.wrappedValue == .active ? .center : .top,spacing: 30){
+        HStack(alignment: editButton?.wrappedValue == .active ? .center : .top, spacing: 30){
             // If Edit mode enabled then showing Delete Button
             if editButton?.wrappedValue == .active{
                 // Edit Button for Current and Future Tasks
@@ -160,9 +165,9 @@ struct TaskManagerView: View {
                         .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : ColorAsset.dateColor) : .clear)
                         .frame(width: 15, height: 15)
                         .background(
-                        
+                            
                             Circle()
-                                .stroke(ColorAsset.dateColor,lineWidth: 0.5)
+                                .stroke(ColorAsset.dateColor, lineWidth: 0.5)
                                 .padding(-3)
                         )
                         .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.8 : 1)
@@ -179,13 +184,16 @@ struct TaskManagerView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         
                         Text(task.taskTitle ?? "")
-                            .font(.title2.bold())
-                            .foregroundColor(ColorAsset.dateColor)
+                            .font(.custom(fontSettings.selectedFont.rawValue, size: 20))
+                            //.font(.title2.bold())
+                            //.foregroundColor(ColorAsset.dateColor)
                         
                         Text(task.taskDescription ?? "")
-                            .font(.callout)
-                            .foregroundColor(Color(.lightGray))
-                            .foregroundStyle(.secondary)
+                            //.font(.callout)
+                            //.foregroundColor(Color(.lightGray))
+                            //.foregroundStyle(.secondary)
+                            .font(.custom(fontSettings.selectedFont.rawValue, size: 20))
+
                     }
                     .hLeading()
                     
@@ -208,7 +216,7 @@ struct TaskManagerView: View {
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(.black)
                                     .padding(10)
-                                    .background(ColorAsset.titleColor,in: RoundedRectangle(cornerRadius: 10))
+                                    .background(ColorAsset.titleColor, in: RoundedRectangle(cornerRadius: 10))
                             }
                         }
                         Text(task.isCompleted ? "Marked as Completed" : "Mark Task as Completed")
@@ -222,7 +230,7 @@ struct TaskManagerView: View {
             .foregroundColor(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? ColorAsset.dateColor :  ColorAsset.dateColor)
             
             .padding(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 15 : 0)
-            .padding(.bottom,taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 : 10)
+            .padding(.bottom, taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 : 10)
             .hLeading()
             .background(
                 Color("MainColor2")
@@ -234,7 +242,7 @@ struct TaskManagerView: View {
     }
     // MARK: Header
     @ViewBuilder
-    func headerView()->some View{
+    func headerView() -> some View{
         HStack(spacing: 10){
             VStack(alignment: .leading, spacing: 10) {
                 Text(Date().formatted(date: .abbreviated, time: .omitted))
@@ -247,14 +255,42 @@ struct TaskManagerView: View {
             // MARK: Edit Button
             EditButton()
                 .foregroundColor(ColorAsset.mainViewColor)
+            // MARK: Setting Button
+            NavigationLink {
+                settingView()
+            } label: {
+                Text("설정")
+            }
+            
         }
         .padding()
-        .padding(.top,getSafeArea().top)
+        .padding(.top, getSafeArea().top)
+    }
+    
+    @ViewBuilder
+    func settingView() -> some View {
+        VStack {
+            List(FontType.allCases, id: \.self) { font in
+                Button {
+                    fontSettings.selectedFont = font
+                } label: {
+                    HStack {
+                        Text(font.rawValue)
+                        if font == fontSettings.selectedFont {
+                            Spacer()
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("본문 폰트 설정")
+
     }
 }
 
 struct TaskManagerView_Previews: PreviewProvider {
     static var previews: some View {
-            TaskManagerView()
+        TaskManagerView()
     }
 }
