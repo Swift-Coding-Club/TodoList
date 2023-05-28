@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Fonts {
+struct Font {
     static let mainFont: String = "나눔손글씨 둥근인연"
     static let subFont: String = "나눔손글씨 맛있는체"
 }

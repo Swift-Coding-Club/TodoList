@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+
 //MARK:  - 뷰 확장 레이아웃
 extension View {
     func hLeading() -> some View {
         self.frame(maxWidth: .infinity, alignment: .leading)
     }
     
-    func hTralling() -> some View {
+    func hTrailing() -> some View {
         self.frame(maxWidth: .infinity, alignment: .trailing)
     }
     
@@ -20,8 +21,8 @@ extension View {
         self.frame(maxWidth: .infinity, alignment: .center)
     }
     
-    func getSafeArea()->UIEdgeInsets{
-        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
+    func getSafeArea() -> UIEdgeInsets {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             return .zero
         }
         guard let safeArea = screen.windows.first?.safeAreaInsets else {

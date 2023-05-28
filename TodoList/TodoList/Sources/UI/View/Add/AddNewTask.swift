@@ -1,5 +1,5 @@
 //
-//  AddTask.swift
+//  AddNewTask.swift
 //  TodoList
 //
 //  Created by 서원지 on 2022/08/10.
@@ -19,9 +19,10 @@ struct AddNewTask: View {
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var taskModel: TaskViewModel
+    
     var body: some View {
-        NavigationView{
-            List{
+        NavigationView {
+            List {
                 Section {
                     TextField("Go to work", text: $taskTitle)
                 } header: {
@@ -36,7 +37,7 @@ struct AddNewTask: View {
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
                 // Disabling Date for Edit Mode
-                if taskModel.editTask == nil{
+                if taskModel.editTask == nil {
                     Section {
                         DatePicker("", selection: $taskDate)
                             .datePickerStyle(.graphical)
@@ -54,16 +55,12 @@ struct AddNewTask: View {
             .interactiveDismissDisabled()
             // MARK: Action Buttons
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가하기"){
-                        
-                        if let task = taskModel.editTask{
-                            
+                    Button("추가하기") {
+                        if let task = taskModel.editTask {
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
-                        }
-                        else{
+                        } else {
                             let task = Task(context: context)
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
@@ -80,7 +77,7 @@ struct AddNewTask: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소하기"){
+                    Button("취소하기") {
                         dismiss()
                     }
                     .foregroundColor(ColorAsset.mainViewColor)
@@ -88,7 +85,7 @@ struct AddNewTask: View {
             }
             // Loading Task data if from Edit
             .onAppear {
-                if let task = taskModel.editTask{
+                if let task = taskModel.editTask {
                     taskTitle = task.taskTitle ?? ""
                     taskDescription = task.taskDescription ?? ""
                 }
@@ -97,7 +94,7 @@ struct AddNewTask: View {
     }
 }
 
-struct AddTask_Previews: PreviewProvider {
+struct AddNewTask_Previews: PreviewProvider {
     static var previews: some View {
         AddNewTask()
             .environmentObject(TaskViewModel())
