@@ -116,6 +116,6 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
 struct DynamicFilteredView_Previews: PreviewProvider {
     static var previews: some View {
         @StateObject var taskModel: TaskViewModel = TaskViewModel()
-        DynamicFilteredView(dateToFilter: taskModel.currentDate, content: { _ in })
+        DynamicFilteredView(dateToFilter: taskModel.currentDate, content: { (object: Task) in })
     }
 }
