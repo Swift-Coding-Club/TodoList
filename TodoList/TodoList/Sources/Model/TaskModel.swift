@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskModel: Identifiable {
     var id = UUID().uuidString
-    var taskTitle : String
-    var taskDecription : String
+    var taskTitle: String
+    var taskDecription: String
     var taskDate: Date
 }

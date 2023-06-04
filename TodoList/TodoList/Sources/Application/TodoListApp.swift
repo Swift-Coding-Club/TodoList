@@ -11,17 +11,17 @@ import CoreData
 @main
 struct TodoListApp: App {
     let persistenceController = PersistenceController.shared
-    @State private var showLanchView: Bool = true
+    @State private var showLaunchView: Bool = true
     
     var body: some Scene {
         WindowGroup {
-            ZStack{
-                TodoLIstMainHomeView()
+            ZStack {
+                TodoListMainHomeView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 
-                ZStack{
-                    if showLanchView {
-                        LanchView(showLanchView: $showLanchView)
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
                             .transition(.move(edge: .leading))
                     }
                 }

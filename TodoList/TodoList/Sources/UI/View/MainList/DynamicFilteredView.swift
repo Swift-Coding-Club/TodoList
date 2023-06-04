@@ -1,5 +1,5 @@
 //
-//  DynamicFilteredVIew.swift
+//  DynamicFilteredView.swift
 //  TodoList
 //
 //  Created by 서원지 on 2022/08/10.
@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
+struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
     //MARK: - Core Data Request
     @FetchRequest var request: FetchedResults<T>
     let content: (T) -> Content
@@ -20,11 +20,11 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
         //MARK: - Predicate to Filter current date Task
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: dateToFilter)
-        let tommorow = calendar.date(byAdding: .day, value: 1, to: today)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
         // Filter Key
         let filterKey = "taskDate"
-        // This will fetch task between today and tommorow which is 24 hours
-        let predicate = NSPredicate(format: "\(filterKey) >= %@ AND \(filterKey) < %@", argumentArray: [today, tommorow])
+        // This will fetch task between today and tomorrow which is 24 hours
+        let predicate = NSPredicate(format: "\(filterKey) >= %@ AND \(filterKey) < %@", argumentArray: [today, tomorrow])
         
         // Intializing Request With NSPredicate
         // Adding Sort
@@ -63,19 +63,19 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
                                     Text("할일 추가 하러 가기 🥳")
                                         .font(.custom("나눔손글씨 둥근인연", size: 20))
                                         .foregroundColor(.white)
-                                        .frame(width: geometry.size.width / 2 , height: geometry.size.width / 8)
+                                        .frame(width: geometry.size.width / 2, height: geometry.size.width / 8)
                                         .frame(maxWidth: .infinity)
                                         .background(animate ? ColorAsset.mainViewColor : ColorAsset.mainColor)
                                         .cornerRadius(12)
                                 }
-                                    .padding(.horizontal, animate ? .zero : 5)
-                                    .shadow(color:  animate ? ColorAsset.mainColor.opacity(0.7) :
+                                .padding(.horizontal, animate ? .zero : 5)
+                                .shadow(color: animate ? ColorAsset.mainColor.opacity(0.7) :
                                                 ColorAsset.changeColor.opacity(0.7)
                                             , radius: animate ? 10 : 20,
                                             x: .zero,
-                                            y:  animate ? 10 : 20)
-                                    .scaleEffect(animate ? 1.2 : 1.0)
-                                    .offset(y: animate ? -9 : 0)
+                                            y: animate ? 10 : 20)
+                                .scaleEffect(animate ? 1.2 : 1.0)
+                                .offset(y: animate ? -9 : 0)
                             )
                             .sheet(isPresented: $taskModel.addNewTask) {
                                 // Clearing Edit Data
@@ -90,35 +90,32 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject{
                     .padding(30)
                     .onAppear(perform: addAnimation)
                 }
-                .frame( maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 ForEach(request, id: \.objectID) { object in
                     self.content(object)
                 }
             }
-            
         }
     }
     
-    
-    //MARK: - 버튼 애니 메이션
+    //MARK: - 버튼 애니메이션
     func addAnimation() {
         guard !animate else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            withAnimation (
+            withAnimation(
                 Animation
                     .easeInOut(duration: 2.0)
                     .repeatForever() ) {
                         animate.toggle()
-                    }
+            }
         }
     }
 }
 
-
-struct DynamicFilteredView_preview: PreviewProvider {
+struct DynamicFilteredView_Previews: PreviewProvider {
     static var previews: some View {
         @StateObject var taskModel: TaskViewModel = TaskViewModel()
-        DynamicFilteredView(dateToFilter: taskModel.currentDate, content: { (object: Task) in  })
+        DynamicFilteredView(dateToFilter: taskModel.currentDate, content: { (object: Task) in })
     }
 }
