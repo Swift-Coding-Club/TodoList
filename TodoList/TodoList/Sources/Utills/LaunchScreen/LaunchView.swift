@@ -12,18 +12,18 @@ struct LaunchView: View {
     
     var body: some View {
         ZStack {
-            Color("MainColor2")
+            Color("MainColor")
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {
-                Image("to-do-list 1")
+                Image("Icon")
                     .resizable()
                     .frame(width: 150, height: 150)
                 
                 Spacer()
                     .frame(height: 20)
                 
-                Text("한다(Handa)")
+                Text("한다")
                     .font(.custom("Helvetica Neue Bold", size: 30))
                     .foregroundColor(.white)
             }

@@ -24,16 +24,12 @@ struct AddNewTask: View {
         NavigationView {
             List {
                 Section {
-                    TextField("Go to work", text: $taskTitle)
-                } header: {
-                    Text("Todo List 제목 🗓")
+                    TextField("Title", text: $taskTitle)
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
 
                 Section {
-                    TextField("Nothing", text: $taskDescription)
-                } header: {
-                    Text("Todo List 해야 할일 📝")
+                    TextField("Description", text: $taskDescription)
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
                 // Disabling Date for Edit Mode
@@ -42,21 +38,19 @@ struct AddNewTask: View {
                         DatePicker("", selection: $taskDate)
                             .datePickerStyle(.graphical)
                             .labelsHidden()
-                    } header: {
-                        Text("Todo List 날짜 추가")
                     }
                 }
             }
             .listStyle(.insetGrouped)
             .font(.custom("나눔손글씨 둥근인연", size: 15))
-            .navigationTitle("할일 추가 하기")
+            .navigationTitle("New Task")
             .navigationBarTitleDisplayMode(.inline)
             // MARK: Disbaling Dismiss on Swipe
             .interactiveDismissDisabled()
             // MARK: Action Buttons
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가하기") {
+                    Button("Add") {
                         if let task = taskModel.editTask {
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
@@ -73,14 +67,14 @@ struct AddNewTask: View {
                         dismiss()
                     }
                     .disabled(taskTitle == "" || taskDescription == "")
-                    .foregroundColor(ColorAsset.mainViewColor)
+                    .foregroundColor(ColorAsset.mainColor)
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소하기") {
+                    Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundColor(ColorAsset.mainViewColor)
+                    .foregroundColor(ColorAsset.mainColor)
                 }
             }
             // Loading Task data if from Edit

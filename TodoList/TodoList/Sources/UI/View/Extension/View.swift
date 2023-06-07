@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//MARK:  - 뷰 확장 레이아웃
+// MARK: - 뷰 확장 레이아웃
 extension View {
     func hLeading() -> some View {
         self.frame(maxWidth: .infinity, alignment: .leading)

@@ -8,22 +8,22 @@
 import SwiftUI
 
 class TaskViewModel: ObservableObject {
-    //MARK:  - date
+    // MARK: - date
     @Published var currentWeek: [Date] = []
-    //MARK:  Current Day
+    // MARK: Current Day
     @Published var currentDate: Date = Date()
-    //MARK:  Filtering 날짜
+    // MARK: Filtering 날짜
     @Published var filteredTask: [Task]?
-    //MARK:  New task VIEW
+    // MARK: New task VIEW
     @Published var addNewTask: Bool = false
-    //MARK: - Edit Task
+    // MARK: - Edit Task
     @Published var editTask: Task?
     
     init() {
         fetchCurrentWeek()
     }
     
-    //MARK: - 일주일 날짜
+    // MARK: - 일주일 날짜
     func fetchCurrentWeek() {
         let today = Date()
         let calender = Calendar.current
@@ -39,15 +39,15 @@ class TaskViewModel: ObservableObject {
         }
     }
     
-    //MARK: Dateformatter
+    // MARK: Dateformatter
     func extractDate(date: Date, format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from: date)
     }
     
-    //MARK: Filtering 날짜
-    //MARK: 날짜 확인
+    // MARK: Filtering 날짜
+    // MARK: 날짜 확인
     func isToday(date: Date) -> Bool {
         let calender = Calendar.current
 
