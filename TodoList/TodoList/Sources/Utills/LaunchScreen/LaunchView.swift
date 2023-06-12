@@ -12,7 +12,7 @@ struct LaunchView: View {
     
     var body: some View {
         ZStack {
-            Color("MainColor")
+            ColorAsset.mainColor
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {

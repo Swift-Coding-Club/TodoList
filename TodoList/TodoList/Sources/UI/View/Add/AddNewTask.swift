@@ -43,14 +43,14 @@ struct AddNewTask: View {
             }
             .listStyle(.insetGrouped)
             .font(.custom("나눔손글씨 둥근인연", size: 15))
-            .navigationTitle("New Task")
+            .navigationTitle("새로운 할 일")
             .navigationBarTitleDisplayMode(.inline)
             // MARK: Disbaling Dismiss on Swipe
             .interactiveDismissDisabled()
             // MARK: Action Buttons
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
+                    Button("추가") {
                         if let task = taskModel.editTask {
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
@@ -71,7 +71,7 @@ struct AddNewTask: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button("취소") {
                         dismiss()
                     }
                     .foregroundColor(ColorAsset.mainColor)
