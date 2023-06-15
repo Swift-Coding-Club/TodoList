@@ -9,15 +9,15 @@ import SwiftUI
 import CoreData
 
 struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
-    //MARK: - Core Data Request
+    // MARK: - Core Data Request
     @FetchRequest var request: FetchedResults<T>
     let content: (T) -> Content
     @StateObject var taskModel: TaskViewModel = TaskViewModel()
     @State var animate: Bool = false
     
-    //MARK: - Building Custom ForEach which will give CoreData object to build View
+    // MARK: - Building Custom ForEach which will give CoreData object to build View
     init(dateToFilter: Date, @ViewBuilder content: @escaping (T) -> Content) {
-        //MARK: - Predicate to Filter current date Task
+        // MARK: - Predicate to Filter current date Task
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: dateToFilter)
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
@@ -42,10 +42,12 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
             if request.isEmpty {
                 GeometryReader { geometry in
                     VStack(spacing: 10) {
-                        Text("리스트가 없어요 😰")
+                        Text("😰")
+                            .fontWeight(.semibold)
                             .font(.custom("나눔손글씨 둥근인연", size: 30))
-                            .fontWeight(.black)
-                            .foregroundColor(ColorAsset.fontColor.opacity(1.0))
+                        Text("리스트가 없어요")
+                            .fontWeight(.semibold)
+                            .font(.custom("나눔손글씨 둥근인연", size: 30))
                         Text("혹시 오늘 할일이 없어요 ☹️?")
                             .fontWeight(.semibold)
                             .font(.custom("나눔손글씨 둥근인연", size: 18))
@@ -55,7 +57,7 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
                         Text("오늘의 할일을 추가 하는게 어떻게 생각해 😝")
                             .fontWeight(.semibold)
                             .font(.custom("나눔손글씨 둥근인연", size: 18))
-                            .padding(.bottom, 80)
+                            .padding(.bottom, 125)
                             .overlay(
                                 Button {
                                     taskModel.addNewTask.toggle()
@@ -65,12 +67,12 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
                                         .foregroundColor(.white)
                                         .frame(width: geometry.size.width / 2, height: geometry.size.width / 8)
                                         .frame(maxWidth: .infinity)
-                                        .background(animate ? ColorAsset.mainViewColor : ColorAsset.mainColor)
+                                        .background(animate ? ColorAsset.mainColor : ColorAsset.changeColor)
                                         .cornerRadius(12)
                                 }
                                 .padding(.horizontal, animate ? .zero : 5)
-                                .shadow(color: animate ? ColorAsset.mainColor.opacity(0.7) :
-                                                ColorAsset.changeColor.opacity(0.7)
+                                .shadow(color: animate ? ColorAsset.changeColor.opacity(0.7) :
+                                            ColorAsset.changeColor.opacity(0.7)
                                             , radius: animate ? 10 : 20,
                                             x: .zero,
                                             y: animate ? 10 : 20)
@@ -85,6 +87,7 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
                                     .environmentObject(taskModel)
                             }
                     }
+                    .foregroundStyle(.secondary)
                     .frame(maxWidth: 400)
                     .multilineTextAlignment(.leading)
                     .padding(30)
@@ -99,7 +102,7 @@ struct DynamicFilteredView<Content: View, T>: View where T: NSManagedObject {
         }
     }
     
-    //MARK: - 버튼 애니메이션
+    // MARK: - 버튼 애니메이션
     func addAnimation() {
         guard !animate else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

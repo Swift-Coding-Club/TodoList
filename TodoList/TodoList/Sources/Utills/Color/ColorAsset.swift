@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ColorAsset {
-    static let mainColor =  Color("MainColor")
     static let changeColor = Color("ChangeColor")
-    static let fontColor = Color("FontColor")
-    static let mainViewColor = Color("MainColor2")
-    static let dateColor = Color("datecolor")
-    static let titleColor = Color("titleColor")
+    static let dateColor = Color("DateColor")
+    static let mainColor = Color("MainColor")
 }
