@@ -1,5 +1,5 @@
 //
-//  AddTask.swift
+//  AddNewTask.swift
 //  TodoList
 //
 //  Created by 서원지 on 2022/08/10.
@@ -19,51 +19,42 @@ struct AddNewTask: View {
     @Environment(\.managedObjectContext) var context
     
     @EnvironmentObject var taskModel: TaskViewModel
+    
     var body: some View {
-        NavigationView{
-            List{
+        NavigationView {
+            List {
                 Section {
-                    TextField("Go to work", text: $taskTitle)
-                } header: {
-                    Text("Todo List 제목 🗓")
+                    TextField("Title", text: $taskTitle)
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
 
                 Section {
-                    TextField("Nothing", text: $taskDescription)
-                } header: {
-                    Text("Todo List 해야 할일 📝")
+                    TextField("Description", text: $taskDescription)
                 }
                 .onAppear(perform: UIApplication.shared.hideKeyboard)
                 // Disabling Date for Edit Mode
-                if taskModel.editTask == nil{
+                if taskModel.editTask == nil {
                     Section {
                         DatePicker("", selection: $taskDate)
                             .datePickerStyle(.graphical)
                             .labelsHidden()
-                    } header: {
-                        Text("Todo List 날짜 추가")
                     }
                 }
             }
             .listStyle(.insetGrouped)
             .font(.custom("나눔손글씨 둥근인연", size: 15))
-            .navigationTitle("할일 추가 하기")
+            .navigationTitle("새로운 할 일")
             .navigationBarTitleDisplayMode(.inline)
             // MARK: Disbaling Dismiss on Swipe
             .interactiveDismissDisabled()
             // MARK: Action Buttons
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가하기"){
-                        
-                        if let task = taskModel.editTask{
-                            
+                    Button("추가") {
+                        if let task = taskModel.editTask {
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
-                        }
-                        else{
+                        } else {
                             let task = Task(context: context)
                             task.taskTitle = taskTitle
                             task.taskDescription = taskDescription
@@ -76,19 +67,19 @@ struct AddNewTask: View {
                         dismiss()
                     }
                     .disabled(taskTitle == "" || taskDescription == "")
-                    .foregroundColor(ColorAsset.mainViewColor)
+                    .foregroundColor(ColorAsset.mainColor)
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소하기"){
+                    Button("취소") {
                         dismiss()
                     }
-                    .foregroundColor(ColorAsset.mainViewColor)
+                    .foregroundColor(ColorAsset.mainColor)
                 }
             }
             // Loading Task data if from Edit
             .onAppear {
-                if let task = taskModel.editTask{
+                if let task = taskModel.editTask {
                     taskTitle = task.taskTitle ?? ""
                     taskDescription = task.taskDescription ?? ""
                 }
@@ -97,7 +88,7 @@ struct AddNewTask: View {
     }
 }
 
-struct AddTask_Previews: PreviewProvider {
+struct AddNewTask_Previews: PreviewProvider {
     static var previews: some View {
         AddNewTask()
             .environmentObject(TaskViewModel())

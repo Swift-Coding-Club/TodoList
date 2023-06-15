@@ -24,19 +24,17 @@ struct TaskManagerView: View {
     
     @ViewBuilder
     func calenderView() -> some View {
-        GeometryReader { gemotry in
+        GeometryReader { geometry in
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: Lazy Stack With Pinned Header
                 LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
                     Section {
+                        headerView()
                         // MARK: Current Week View
                         ScrollView(.horizontal, showsIndicators: false) {
-                            
-                            HStack(spacing: 10){
-                                
-                                ForEach(taskModel.currentWeek,id: \.self){day in
-                                    
-                                    VStack(spacing: 10){
+                            HStack(spacing: 10) {
+                                ForEach(taskModel.currentWeek, id: \.self) { day in
+                                    VStack(spacing: 10) {
                                         Text(taskModel.extractDate(date: day, format: "dd"))
                                             .font(.system(size: 15))
                                             .fontWeight(.semibold)
@@ -54,14 +52,13 @@ struct TaskManagerView: View {
                                     .foregroundStyle(taskModel.isToday(date: day) ? .primary : .secondary)
                                     .foregroundColor(taskModel.isToday(date: day) ? .white : ColorAsset.dateColor)
                                     // MARK: Capsule Shape
-                                    .frame(width: (gemotry.size.width / 9) , height: (gemotry.size.height / 9))
+                                    .frame(width: geometry.size.width / 9, height: geometry.size.height / 9)
                                     .background(
-                                    
-                                        ZStack{
+                                        ZStack {
                                             // MARK: Matched Geometry Effect
-                                            if taskModel.isToday(date: day){
+                                            if taskModel.isToday(date: day) {
                                                 Capsule()
-                                                    .fill(ColorAsset.mainViewColor)
+                                                    .fill(ColorAsset.mainColor)
                                                     .matchedGeometryEffect(id: "CURRENTDAY", in: animation)
                                             }
                                         }
@@ -69,7 +66,7 @@ struct TaskManagerView: View {
                                     .contentShape(Capsule())
                                     .onTapGesture {
                                         // Updating Current Day
-                                        withAnimation{
+                                        withAnimation {
                                             taskModel.currentDate = day
                                         }
                                     }
@@ -77,9 +74,7 @@ struct TaskManagerView: View {
                             }
                             .padding(.horizontal)
                         }
-                        tasksView()
-                    } header: {
-                        headerView()
+                        taskView()
                     }
                 }
             }
@@ -88,18 +83,16 @@ struct TaskManagerView: View {
         .ignoresSafeArea(.container, edges: .top)
         // MARK: Add Button
         .overlay(
-        
             Button(action: {
                 taskModel.addNewTask.toggle()
             }, label: {
                 Image(systemName: "plus")
                     .foregroundColor(.white)
                     .padding()
-                    .background(ColorAsset.mainViewColor,in: Circle())
+                    .background(ColorAsset.mainColor, in: Circle())
             })
-            .padding()
-            
-            ,alignment: .bottomTrailing
+            .padding(),
+            alignment: .bottomTrailing
         )
         .sheet(isPresented: $taskModel.addNewTask) {
             // Clearing Edit Data
@@ -109,10 +102,11 @@ struct TaskManagerView: View {
                 .environmentObject(taskModel)
         }
     }
+    
     // MARK: Tasks View
     @ViewBuilder
-    func tasksView()->some View{
-        LazyVStack(spacing: 20){
+    func taskView() -> some View {
+        LazyVStack(spacing: 20) {
             // Converting object as Our Task Model
             DynamicFilteredView(dateToFilter: taskModel.currentDate) { (object: Task) in
                 taskCardView(task: object)
@@ -121,17 +115,17 @@ struct TaskManagerView: View {
         .padding()
         .padding(.top)
     }
+    
     // MARK: Task Card View
     @ViewBuilder
-    func taskCardView(task: Task)->some View{
+    func taskCardView(task: Task) -> some View {
         // MARK: Since CoreData Values will Give Optinal data
-        HStack(alignment: editButton?.wrappedValue == .active ? .center : .top,spacing: 30){
+        HStack(alignment: editButton?.wrappedValue == .active ? .center: .top, spacing: 30) {
             // If Edit mode enabled then showing Delete Button
-            if editButton?.wrappedValue == .active{
+            if editButton?.wrappedValue == .active {
                 // Edit Button for Current and Future Tasks
-                VStack(spacing: 10){
-                    if task.taskDate?.compare(Date()) == .orderedDescending || Calendar.current.isDateInToday(task.taskDate ?? Date()){
-                        
+                VStack(spacing: 10) {
+                    if task.taskDate?.compare(Date()) == .orderedDescending || Calendar.current.isDateInToday(task.taskDate ?? Date()) {
                         Button {
                             taskModel.editTask = task
                             taskModel.addNewTask.toggle()
@@ -152,53 +146,46 @@ struct TaskManagerView: View {
                             .foregroundColor(.red)
                     }
                 }
-            }
-            else{
-                //MARK: - 라인 색상
-                VStack(spacing: 10){
+            } else {
+                // MARK: - 라인 색상
+                VStack(spacing: 10) {
                     Circle()
-                        .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : ColorAsset.dateColor) : .clear)
+                        .fill(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? ColorAsset.mainColor : .clear) : .clear)
                         .frame(width: 15, height: 15)
                         .background(
-                        
                             Circle()
-                                .stroke(ColorAsset.dateColor,lineWidth: 0.5)
+                                .stroke(.clear, lineWidth: 0.5)
                                 .padding(-3)
                         )
                         .scaleEffect(!taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.8 : 1)
                     Rectangle()
-                        .fill(ColorAsset.mainViewColor)
+                        .fill(ColorAsset.mainColor)
                         .frame(width: 3)
+                        .cornerRadius(15)
                 }
             }
             
-            VStack{
-                
+            VStack {
                 HStack(alignment: .top, spacing: 10) {
-                    
                     VStack(alignment: .leading, spacing: 12) {
-                        
                         Text(task.taskTitle ?? "")
-                            .font(.title2.bold())
-                            .foregroundColor(ColorAsset.dateColor)
                         
                         Text(task.taskDescription ?? "")
                             .font(.callout)
-                            .foregroundColor(Color(.lightGray))
-                            .foregroundStyle(.secondary)
                     }
+                    .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .primary : .secondary)
                     .hLeading()
                     
                     Text(task.taskDate?.formatted(date: .omitted, time: .shortened) ?? "")
-                        .foregroundColor(ColorAsset.dateColor)
                 }
+                .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .primary : .secondary)
+                .foregroundColor(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .white : ColorAsset.dateColor)
                 
-                if taskModel.isCurrentHour(date: task.taskDate ?? Date()){
-                    
+                if taskModel.isCurrentHour(date: task.taskDate ?? Date()) {
                     // MARK: Team Members
-                    HStack(spacing: 12){
+                    HStack(spacing: 12) {
                         // MARK: Check Button
-                        if !task.isCompleted{
+                        if !task.isCompleted {
                             Button {
                                 // MARK: Updating Task
                                 task.isCompleted = true
@@ -206,12 +193,12 @@ struct TaskManagerView: View {
                                 try? context.save()
                             } label: {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(ColorAsset.mainColor)
                                     .padding(10)
-                                    .background(ColorAsset.titleColor,in: RoundedRectangle(cornerRadius: 10))
+                                    .background(.white, in: RoundedRectangle(cornerRadius: 10))
                             }
                         }
-                        Text(task.isCompleted ? "Marked as Completed" : "Mark Task as Completed")
+                        Text(task.isCompleted ? "Completed tasks" : "Incompleted task")
                             .font(.system(size: task.isCompleted ? 14 : 16, weight: .light))
                             .foregroundColor(task.isCompleted ? .white : .white)
                             .hLeading()
@@ -219,42 +206,41 @@ struct TaskManagerView: View {
                     .padding(.top)
                 }
             }
-            .foregroundColor(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? ColorAsset.dateColor :  ColorAsset.dateColor)
-            
             .padding(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 15 : 0)
-            .padding(.bottom,taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 : 10)
+            .padding(.bottom, taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 : 10)
             .hLeading()
             .background(
-                Color("MainColor2")
+                Color("MainColor")
                     .cornerRadius(25)
                     .opacity(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? 1 : 0)
             )
         }
         .hLeading()
     }
+    
     // MARK: Header
     @ViewBuilder
-    func headerView()->some View{
-        HStack(spacing: 10){
+    func headerView() -> some View {
+        HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 10) {
-                Text(Date().formatted(date: .abbreviated, time: .omitted))
-                    .foregroundColor(.gray)
-                Text("Todo List 📝")
-                    .font(.largeTitle.bold())
+                // Text(Date().formatted(date: .abbreviated, time: .omitted))
+                Text("TodoList")
+                    .font(.title.bold())
+                    .font(.custom("Helvetica Neue Bold", size: 30))
             }
-            .foregroundColor(ColorAsset.mainViewColor)
+            .foregroundColor(ColorAsset.mainColor)
             .hLeading()
             // MARK: Edit Button
             EditButton()
-                .foregroundColor(ColorAsset.mainViewColor)
+                .foregroundColor(ColorAsset.mainColor)
         }
         .padding()
-        .padding(.top,getSafeArea().top)
+        .padding(.top, getSafeArea().top)
     }
 }
 
 struct TaskManagerView_Previews: PreviewProvider {
     static var previews: some View {
-            TaskManagerView()
+        TaskManagerView()
     }
 }
