@@ -50,7 +50,7 @@ struct TaskManagerView: View {
                                     }
                                     // MARK: Foreground Style
                                     .foregroundStyle(taskModel.isToday(date: day) ? .primary : .secondary)
-                                    .foregroundColor(taskModel.isToday(date: day) ? .white : ColorAsset.dateColor)
+                                    .foregroundColor(taskModel.isToday(date: day) ? .white : Color(.darkGray))
                                     // MARK: Capsule Shape
                                     .frame(width: geometry.size.width / 9, height: geometry.size.height / 9)
                                     .background(
