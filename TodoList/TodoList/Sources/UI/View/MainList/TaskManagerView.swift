@@ -50,7 +50,7 @@ struct TaskManagerView: View {
                                     }
                                     // MARK: Foreground Style
                                     .foregroundStyle(taskModel.isToday(date: day) ? .primary : .secondary)
-                                    .foregroundColor(taskModel.isToday(date: day) ? .white : Color(.darkGray))
+                                    .foregroundColor(taskModel.isToday(date: day) ? .white : .secondary)
                                     // MARK: Capsule Shape
                                     .frame(width: geometry.size.width / 9, height: geometry.size.height / 9)
                                     .background(
@@ -132,7 +132,6 @@ struct TaskManagerView: View {
                         } label: {
                             Image(systemName: "pencil.circle.fill")
                                 .font(.title)
-                                .foregroundColor(ColorAsset.dateColor)
                         }
                     }
                     Button {
@@ -173,13 +172,11 @@ struct TaskManagerView: View {
                         Text(task.taskDescription ?? "")
                             .font(.callout)
                     }
-                    .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .primary : .secondary)
                     .hLeading()
                     
                     Text(task.taskDate?.formatted(date: .omitted, time: .shortened) ?? "")
                 }
-                .foregroundStyle(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .primary : .secondary)
-                .foregroundColor(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .white : ColorAsset.dateColor)
+                .foregroundColor(taskModel.isCurrentHour(date: task.taskDate ?? Date()) ? .white : .secondary)
                 
                 if taskModel.isCurrentHour(date: task.taskDate ?? Date()) {
                     // MARK: Team Members
