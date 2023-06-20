@@ -45,8 +45,6 @@ struct AddNewTask: View {
             .font(.custom("나눔손글씨 둥근인연", size: 15))
             .navigationTitle("새로운 할 일")
             .navigationBarTitleDisplayMode(.inline)
-            // MARK: Disbaling Dismiss on Swipe
-            .interactiveDismissDisabled()
             // MARK: Action Buttons
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
