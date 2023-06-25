@@ -31,7 +31,7 @@ class TaskViewModel: ObservableObject {
         let week = calender.dateInterval(of: .weekOfMonth, for: today)
         
         guard let firstWeekDay = week?.start else { return }
-        let weekend: ClosedRange<Int> = 1...7
+        let weekend: ClosedRange<Int> = 0...6
         (weekend).forEach { day in
             if let weekday = calender.date(byAdding: .day, value: day, to: firstWeekDay) {
                 currentWeek.append(weekday)
